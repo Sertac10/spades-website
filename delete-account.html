@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Account & Data Deletion - Spades (Koz Maça)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #070B14;
+      --card-bg: rgba(15, 23, 42, 0.9);
+      --card-border: rgba(212, 175, 55, 0.25);
+      --gold-primary: #FFE066;
+      --gold-accent: #D4AF37;
+      --text-main: #E2E8F0;
+      --text-muted: #94A3B8;
+      --link-color: #38BDF8;
+      --danger-color: #EF4444;
+      --success-color: #10B981;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      line-height: 1.7;
+      padding: 40px 20px;
+    }
+
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 48px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 50px rgba(212, 175, 55, 0.08);
+      backdrop-filter: blur(12px);
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 40px;
+      border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+      padding-bottom: 30px;
+    }
+
+    .logo-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #1E1B4B 0%, #0F172A 100%);
+      border: 2px solid var(--gold-accent);
+      font-size: 32px;
+      margin-bottom: 16px;
+      box-shadow: 0 0 20px rgba(255, 224, 102, 0.3);
+    }
+
+    .title {
+      font-family: 'Cinzel', serif;
+      font-size: 30px;
+      color: var(--gold-primary);
+      letter-spacing: 2px;
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      color: var(--text-muted);
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .meta-badge {
+      display: inline-block;
+      margin-top: 14px;
+      padding: 4px 14px;
+      background: rgba(212, 175, 55, 0.1);
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      border-radius: 20px;
+      font-size: 12px;
+      color: var(--gold-primary);
+    }
+
+    .lang-switcher {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .lang-btn {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: var(--text-main);
+      padding: 6px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 600;
+      transition: all 0.2s ease;
+    }
+
+    .lang-btn.active, .lang-btn:hover {
+      background: var(--gold-accent);
+      color: #000;
+      border-color: var(--gold-accent);
+    }
+
+    h2 {
+      color: var(--gold-primary);
+      font-size: 20px;
+      font-weight: 600;
+      margin-top: 36px;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    h2::before {
+      content: '♠';
+      color: var(--gold-accent);
+      font-size: 16px;
+    }
+
+    p {
+      margin-bottom: 14px;
+      color: #CBD5E1;
+      font-size: 15px;
+    }
+
+    ul, ol {
+      margin-left: 24px;
+      margin-bottom: 18px;
+      color: #CBD5E1;
+    }
+
+    li {
+      margin-bottom: 8px;
+      font-size: 14.5px;
+    }
+
+    strong {
+      color: #F8FAFC;
+    }
+
+    .delete-box {
+      background: rgba(239, 68, 68, 0.08);
+      border-left: 4px solid var(--danger-color);
+      padding: 20px;
+      border-radius: 8px;
+      margin: 20px 0;
+      font-size: 14px;
+    }
+
+    .info-box {
+      background: rgba(56, 189, 248, 0.08);
+      border-left: 4px solid var(--link-color);
+      padding: 20px;
+      border-radius: 8px;
+      margin: 20px 0;
+      font-size: 14px;
+    }
+
+    .form-container {
+      background: rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(212, 175, 55, 0.2);
+      border-radius: 12px;
+      padding: 24px;
+      margin: 24px 0;
+    }
+
+    .form-group {
+      margin-bottom: 18px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--gold-primary);
+      margin-bottom: 6px;
+    }
+
+    .form-group input, .form-group textarea {
+      width: 100%;
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 8px;
+      padding: 12px 16px;
+      color: #FFF;
+      font-size: 14px;
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .form-group input:focus, .form-group textarea:focus {
+      border-color: var(--gold-accent);
+    }
+
+    .btn-submit {
+      background: linear-gradient(135deg, #EF4444 0%, #B91C1C 100%);
+      color: #FFF;
+      border: none;
+      padding: 12px 28px;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 4px 15px rgba(239, 68, 68, 0.4);
+      transition: transform 0.15s, opacity 0.15s;
+    }
+
+    .btn-submit:hover {
+      opacity: 0.9;
+      transform: translateY(-1px);
+    }
+
+    .status-msg {
+      display: none;
+      margin-top: 16px;
+      padding: 14px;
+      border-radius: 8px;
+      font-size: 14px;
+    }
+
+    .status-msg.success {
+      background: rgba(16, 185, 129, 0.12);
+      border: 1px solid var(--success-color);
+      color: #A7F3D0;
+    }
+
+    a {
+      color: var(--link-color);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 50px;
+      padding-top: 24px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .lang-section {
+      display: none;
+    }
+
+    .lang-section.active {
+      display: block;
+    }
+
+    @media (max-width: 640px) {
+      body {
+        padding: 16px 10px;
+      }
+      .container {
+        padding: 24px 18px;
+      }
+      .title {
+        font-size: 22px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div style="margin-bottom: 24px; display: flex; justify-content: space-between; align-items: center;">
+      <a href="/" style="color: #FFE066; text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 6px; font-size: 14px;">← Back to Home / Ana Sayfa</a>
+      <a href="privacy.html" style="color: #94A3B8; text-decoration: none; font-size: 13px;">Privacy Policy</a>
+    </div>
+    
+    <div class="header">
+      <div class="logo-badge">♠</div>
+      <h1 class="title">SPADES</h1>
+      <p class="subtitle">Account & Data Deletion Request (Koz Maça)</p>
+      <div class="meta-badge">Package: com.sertac10.spades &bull; Google Play Compliance</div>
+
+      <div class="lang-switcher">
+        <button class="lang-btn active" id="btn-en" onclick="switchLang('en')">English</button>
+        <button class="lang-btn" id="btn-tr" onclick="switchLang('tr')">Türkçe</button>
+      </div>
+    </div>
+
+    <!-- ENGLISH VERSION -->
+    <div id="lang-en" class="lang-section active">
+      
+      <h2>1. Overview & Policy Commitment</h2>
+      <p>
+        At <strong>Spades</strong>, published by <strong>Sertaç Nayman</strong>, we are committed to giving players full control over their personal data. In compliance with <strong>Google Play's App Account Deletion Requirements</strong>, we provide both an in-app deletion pathway and this dedicated external web page for players who have uninstalled the app or no longer have device access.
+      </p>
+
+      <h2>2. How to Request Account Deletion</h2>
+      <p>You can request the deletion of your account and all associated data through either of the following methods:</p>
+
+      <div class="info-box">
+        <strong>Method A: Inside the Spades Mobile App (Recommended)</strong>
+        <ol style="margin-top: 8px;">
+          <li>Open the <strong>Spades</strong> app on your device.</li>
+          <li>Go to <strong>Profile</strong> &gt; <strong>Settings (Gear Icon)</strong>.</li>
+          <li>Tap <strong>Delete Account</strong> and confirm the warning dialog.</li>
+        </ol>
+      </div>
+
+      <div class="delete-box">
+        <strong>Method B: Web Request (For users who uninstalled the app)</strong>
+        <p style="margin-top: 8px; margin-bottom: 0;">
+          If you no longer have the app installed, please submit the request form below or email us directly at 
+          <a href="mailto:snaimans@gmail.com?subject=Account%20Deletion%20Request%20-%20Spades">snaimans@gmail.com</a> 
+          with your registered email address or Player ID.
+        </p>
+      </div>
+
+      <div class="form-container">
+        <h3 style="color: var(--gold-primary); font-size: 16px; margin-bottom: 14px;">Web Account Deletion Form</h3>
+        <form id="deletion-form-en" onsubmit="handleFormSubmit(event, 'en')">
+          <div class="form-group">
+            <label for="email-en">Registered Email or Player ID *</label>
+            <input type="text" id="email-en" placeholder="e.g. user@example.com or Player ID from profile" required>
+          </div>
+          <div class="form-group">
+            <label for="notes-en">Additional Details / Confirmation (Optional)</label>
+            <textarea id="notes-en" rows="3" placeholder="Please state any specific requests regarding your game data erasure."></textarea>
+          </div>
+          <button type="submit" class="btn-submit">
+            <span>Request Account Deletion</span>
+          </button>
+        </form>
+        <div id="status-en" class="status-msg"></div>
+      </div>
+
+      <h2>3. Data That Will Be Deleted</h2>
+      <p>Upon processing your deletion request, the following data associated with your account will be permanently erased:</p>
+      <ul>
+        <li><strong>Profile Data:</strong> Display name, profile picture / avatar, bio, and registered credentials (Google/Apple authentication tokens).</li>
+        <li><strong>Game Progress & Stats:</strong> Match history, ELO rating, level progression, win/loss records, tournament trophies, and leaderboard standings.</li>
+        <li><strong>Virtual Currency & Cosmetics:</strong> Chips balance, diamonds, unlocked card decks, table themes, and emotes.</li>
+        <li><strong>Device Tokens & Social Data:</strong> Push notification tokens (FCM), friends list, sent/received gifts, and in-game chat messages.</li>
+      </ul>
+
+      <h2>4. Retention Period & Grace Period</h2>
+      <p>
+        <strong>14-Day Grace Period:</strong> Once a deletion request is initiated, your account is placed into a <strong>14-day pending deletion status</strong>. During this window, you may cancel the deletion simply by logging back into the app.
+      </p>
+      <p>
+        <strong>Permanent Erasure:</strong> After 14 days, all associated personal and game records are irrevocably deleted from our production database.
+      </p>
+      <p>
+        <strong>Legal & Regulatory Exceptions:</strong> Certain anonymized financial transaction logs (e.g. Google Play purchase receipts) may be retained for as long as required by applicable tax, financial accounting, or anti-fraud laws.
+      </p>
+
+      <h2>5. Contact & Support</h2>
+      <p>
+        If you have any questions or require assistance regarding data deletion, please contact our support team:
+      </p>
+      <p>
+        <strong>Email:</strong> <a href="mailto:snaimans@gmail.com">snaimans@gmail.com</a><br>
+        <strong>Privacy Policy:</strong> <a href="privacy.html">View Full Privacy Policy</a>
+      </p>
+
+    </div>
+
+    <!-- TURKISH VERSION -->
+    <div id="lang-tr" class="lang-section">
+      
+      <h2>1. Genel Bakış ve Politika Taahhüdü</h2>
+      <p>
+        <strong>Sertaç Nayman</strong> tarafından yayınlanan <strong>Spades (Koz Maça)</strong> oyununda oyuncularımızın verilerini ve gizlilik haklarını korumak en yüksek önceliğimizdir. <strong>Google Play Hesap Silme Politikası</strong> gereğince, hem uygulama içi kolay bir silme mekanizması hem de uygulamayı cihazından kaldırmış oyuncularımız için bu harici web sayfası sunulmaktadır.
+      </p>
+
+      <h2>2. Hesabınızı Nasıl Silebilirsiniz?</h2>
+      <p>Hesabınızın ve tüm verilerinizin silinmesini aşağıdaki iki yöntemden biriyle talep edebilirsiniz:</p>
+
+      <div class="info-box">
+        <strong>Yöntem A: Spades Mobil Uygulaması İçinden (Önerilen)</strong>
+        <ol style="margin-top: 8px;">
+          <li>Cihazınızdaki <strong>Spades</strong> uygulamasını açın.</li>
+          <li><strong>Profil</strong> &gt; <strong>Ayarlar (Dişli Çark)</strong> menüsüne gidin.</li>
+          <li><strong>Hesabımı Sil</strong> butonuna dokunun ve onay penceresini kabul edin.</li>
+        </ol>
+      </div>
+
+      <div class="delete-box">
+        <strong>Yöntem B: Web Üzerinden Talep (Uygulamayı Kaldıranlar İçin)</strong>
+        <p style="margin-top: 8px; margin-bottom: 0;">
+          Uygulama artık telefonunuzda yüklü değilse, aşağıdaki formu doldurabilir veya doğrudan 
+          <a href="mailto:snaimans@gmail.com?subject=Hesap%20Silme%20Talebi%20-%20Spades">snaimans@gmail.com</a> 
+          adresine kayıtlı e-postanız veya Oyuncu ID bilginizle e-posta gönderebilirsiniz.
+        </p>
+      </div>
+
+      <div class="form-container">
+        <h3 style="color: var(--gold-primary); font-size: 16px; margin-bottom: 14px;">Web Hesap Silme Talep Formu</h3>
+        <form id="deletion-form-tr" onsubmit="handleFormSubmit(event, 'tr')">
+          <div class="form-group">
+            <label for="email-tr">Kayıtlı E-posta veya Oyuncu Kimliği (ID) *</label>
+            <input type="text" id="email-tr" placeholder="örn. kullanici@example.com veya profil ID'niz" required>
+          </div>
+          <div class="form-group">
+            <label for="notes-tr">Ek Açıklama / Talep Notu (İsteğe Bağlı)</label>
+            <textarea id="notes-tr" rows="3" placeholder="Veri silme talebinizle ilgili belirtmek istediğiniz ek bir husus varsa yazabilirsiniz."></textarea>
+          </div>
+          <button type="submit" class="btn-submit">
+            <span>Hesap Silme Talebini İlet</span>
+          </button>
+        </form>
+        <div id="status-tr" class="status-msg"></div>
+      </div>
+
+      <h2>3. Hangi Veriler Silinir?</h2>
+      <p>Silme işleminiz tamamlandığında hesabınıza ait aşağıdaki tüm veriler kalıcı olarak yok edilir:</p>
+      <ul>
+        <li><strong>Profil Bilgileri:</strong> Görünen kullanıcı adı, avatar / profil fotoğrafı, biyografi ve Google/Apple kimlik ilişkilendirmeleri.</li>
+        <li><strong>Oyun İlerlemesi ve İstatistikler:</strong> Maç geçmişi, ELO puanı, seviye, kazanma/kaybetme sayıları, turnuva dereceleri ve liderlik tablosu kayıtları.</li>
+        <li><strong>Sanal Varlıklar:</strong> Çip bakiyesi, elmaslar, kilit açılmış deste ve masa temaları, ifadeler.</li>
+        <li><strong>Cihaz ve Sosyal Veriler:</strong> FCM anlık bildirim belirteçleri, arkadaş listeleri ve oyun içi mesajlaşmalar.</li>
+      </ul>
+
+      <h2>4. Bekleme Süresi ve Kalıcı Silme (14 Gün)</h2>
+      <p>
+        <strong>14 Günlük Grace Period:</strong> Silme talebi oluşturulduğunda hesabınız <strong>14 gün süreyle silinme öncesi bekleme durumuna</strong> alınır. Yanlışlıkla yapılan talepleri önlemek amacıyla bu 14 gün içinde uygulamaya tekrar giriş yaparsanız silme işlemi iptal edilir.
+      </p>
+      <p>
+        <strong>Kalıcı Silme:</strong> 14 günlük sürenin sonunda veritabanındaki tüm ilişkili kayıtlar geri döndürülemez şekilde kalıcı olarak silinir.
+      </p>
+      <p>
+        <strong>Yasal İstisnalar:</strong> Vergi, finansal denetim veya dolandırıcılıkla mücadele mevzuatları kapsamında saklanması kanunen zorunlu tutulan satın alma işlem kayıtları (Google Play dekontları) yasal süre boyunca arşivlenebilir.
+      </p>
+
+      <h2>5. İletişim & Destek</h2>
+      <p>
+        Veri silme sürecinizle ilgili her türlü soru ve talebiniz için destek ekibimize ulaşabilirsiniz:
+      </p>
+      <p>
+        <strong>E-posta:</strong> <a href="mailto:snaimans@gmail.com">snaimans@gmail.com</a><br>
+        <strong>Gizlilik Politikası:</strong> <a href="privacy.html">Gizlilik Politikasını Görüntüle</a>
+      </p>
+
+    </div>
+
+    <div class="footer">
+      &copy; 2026 Spades (Koz Maça). All rights reserved. &bull; Developer: Sertaç Nayman &bull; 
+      <a href="privacy.html">Privacy Policy</a>
+    </div>
+
+  </div>
+
+  <script>
+    function switchLang(lang) {
+      document.querySelectorAll('.lang-section').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll('.lang-btn').forEach(el => el.classList.remove('active'));
+      
+      const targetSection = document.getElementById('lang-' + lang);
+      const targetBtn = document.getElementById('btn-' + lang);
+      if (targetSection) targetSection.classList.add('active');
+      if (targetBtn) targetBtn.classList.add('active');
+    }
+
+    function handleFormSubmit(e, lang) {
+      e.preventDefault();
+      const identifier = document.getElementById('email-' + lang).value.trim();
+      const notes = document.getElementById('notes-' + lang).value.trim();
+      const statusBox = document.getElementById('status-' + lang);
+
+      const subject = encodeURIComponent(lang === 'tr' 
+        ? 'Hesap Silme Talebi - Spades (' + identifier + ')' 
+        : 'Account Deletion Request - Spades (' + identifier + ')');
+      
+      const body = encodeURIComponent(lang === 'tr'
+        ? `Merhaba Spades Destek Ekibi,\n\nAşağıdaki hesap için tüm verilerin ve hesabın silinmesini talep ediyorum:\nHesap Bilgisi: ${identifier}\nNotlar: ${notes || 'Yok'}\n\nTeşekkürler.`
+        : `Hello Spades Support Team,\n\nI hereby request the permanent deletion of my account and all associated data:\nAccount Identifier: ${identifier}\nAdditional Notes: ${notes || 'None'}\n\nThank you.`);
+
+      const mailtoUrl = `mailto:snaimans@gmail.com?subject=${subject}&body=${body}`;
+      
+      statusBox.className = 'status-msg success';
+      statusBox.style.display = 'block';
+
+      if (lang === 'tr') {
+        statusBox.innerHTML = `<strong>Talebiniz Hazırlandı!</strong><br>
+        E-posta istemciniz açılmadıysa lütfen talebinizi şu adrese iletin: <a href="${mailtoUrl}"><strong>snaimans@gmail.com</strong></a><br>
+        Talebiniz alındıktan sonra 14 günlük bekleme sürecinin ardından hesabınız ve ilişkili tüm verileriniz kalıcı olarak silinecektir.`;
+      } else {
+        statusBox.innerHTML = `<strong>Request Prepared!</strong><br>
+        If your email client did not automatically open, please send your request directly to: <a href="${mailtoUrl}"><strong>snaimans@gmail.com</strong></a><br>
+        Upon receipt, your account will enter the 14-day grace period and then be permanently purged.`;
+      }
+
+      window.location.href = mailtoUrl;
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Spades Online - Real-Time 4-Player Card Game | nayman.stream</title>
+
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Experience authentic 4-player Spades (Koz Maça) with real-time multiplayer, knockout tournaments, smart AI bots, and customizable holographic decks. Download now on Android & iOS.">
+  <meta name="keywords" content="Spades, Spades Online, Koz Maça, Batak, Eşli Batak, Card Game, Trick-Taking, Multiplayer Spades, Google Play, Android, iOS, nayman.stream">
+  <meta name="author" content="Sertaç Nayman">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://nayman.stream/">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://nayman.stream/">
+  <meta property="og:title" content="Spades Online - Real-Time 4-Player Card Game">
+  <meta property="og:description" content="Master every trick! Real-time 4-player multiplayer, 3-round knockout tournaments, smart AI, and stunning holographic decks.">
+  <meta property="og:image" content="https://nayman.stream/images/feature-graphic.png">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://nayman.stream/">
+  <meta name="twitter:title" content="Spades Online - Real-Time 4-Player Card Game">
+  <meta name="twitter:description" content="Master every trick! Real-time 4-player multiplayer, 3-round knockout tournaments, smart AI, and stunning holographic decks.">
+  <meta name="twitter:image" content="https://nayman.stream/images/feature-graphic.png">
+
+  <!-- Favicon & Touch Icons -->
+  <link rel="icon" type="image/png" href="images/icon-512.png">
+  <link rel="apple-touch-icon" href="images/icon-512.png">
+
+  <!-- Google Fonts: Cinzel & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Core Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- Schema.org Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MobileApplication",
+    "name": "Spades Online",
+    "alternateName": "Koz Maça Online",
+    "operatingSystem": "Android, iOS",
+    "applicationCategory": "GameApplication",
+    "genre": "Card Game",
+    "url": "https://nayman.stream",
+    "downloadUrl": "https://play.google.com/store/apps/details?id=com.sertac10.spades",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "ratingCount": "1450"
+    },
+    "author": {
+      "@type": "Person",
+      "name": "Sertaç Nayman"
+    }
+  }
+  </script>
+</head>
+<body>
+
+  <!-- Ambient Glow Backgrounds -->
+  <div class="ambient-glow ambient-glow-top"></div>
+  <div class="ambient-glow ambient-glow-right"></div>
+  <div class="ambient-glow ambient-glow-left"></div>
+
+  <!-- Interactive Background Canvas (♠ ♥ ♦ ♣ Particles) -->
+  <canvas id="particle-canvas"></canvas>
+
+  <!-- ==========================================
+       Header & Navigation Bar
+       ========================================== -->
+  <header class="navbar" id="navbar">
+    <div class="container nav-container">
+      <a href="#hero" class="brand" aria-label="Spades Online Home">
+        <div class="brand-icon-wrapper">
+          <img src="images/icon-512.png" alt="Spades Online Crest" class="brand-logo-img">
+        </div>
+        <div class="brand-info">
+          <div class="brand-title">SPADES <span>ONLINE</span></div>
+          <div class="brand-domain">nayman.stream</div>
+        </div>
+      </a>
+
+      <!-- Navigation Links -->
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#features" class="nav-link" data-i18n="navFeatures">Features</a></li>
+        <li><a href="#modes" class="nav-link" data-i18n="navModes">Game Modes</a></li>
+        <li><a href="#showcase" class="nav-link" data-i18n="navShowcase">Showcase</a></li>
+        <li><a href="#customization" class="nav-link" data-i18n="navDecks">Decks & Felts</a></li>
+        <li><a href="#rules" class="nav-link" data-i18n="navRules">How to Play</a></li>
+        <li><a href="#faq" class="nav-link" data-i18n="navFaq">FAQ</a></li>
+      </ul>
+
+      <!-- Nav Actions (Lang Toggle & Download) -->
+      <div class="nav-actions">
+        <div class="lang-toggle" role="group" aria-label="Language Switcher">
+          <button class="lang-btn active" data-lang="en" onclick="switchLanguage('en')">🇬🇧 EN</button>
+          <button class="lang-btn" data-lang="tr" onclick="switchLanguage('tr')">🇹🇷 TR</button>
+        </div>
+
+        <a href="https://play.google.com/store/apps/details?id=com.sertac10.spades" target="_blank" rel="noopener noreferrer" class="btn-primary" data-i18n="navDownload">Download App</a>
+
+        <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Toggle navigation menu">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==========================================
+       Hero Section
+       ========================================== -->
+  <main>
+    <section class="hero" id="hero">
+      <div class="container">
+        <div class="hero-grid">
+          
+          <!-- Hero Left Column: Copy & Actions -->
+          <div class="hero-content">
+            <div class="hero-badge" data-i18n="heroBadge">♠️ The Ultimate 4-Player Card Game</div>
+            <h1 class="hero-title" data-i18n="heroTitle">
+              Master Every Trick.<br>
+              <span class="gold-gradient-text">Claim Every Spade.</span>
+            </h1>
+            <p class="hero-description" data-i18n="heroDesc">
+              Experience authentic 4-player Spades with real-time multiplayer, knockout tournaments, zero wait-time smart AI, and customizable holographic decks. Join thousands of trick-taking masters worldwide.
+            </p>
+
+            <!-- Store CTAs -->
+            <div class="hero-cta-group">
+              <!-- Google Play -->
+              <a href="https://play.google.com/store/apps/details?id=com.sertac10.spades" target="_blank" rel="noopener noreferrer" class="store-btn">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M3.609 1.814L13.793 12 3.61 22.186a2.38 2.38 0 0 1-.61-.926V2.74c.16-.36.38-.69.609-.926z" fill="#00E676"/>
+                  <path d="M17.067 8.727L5.056.792c-.443-.295-.97-.336-1.447-.113l10.184 10.184 3.274-2.136z" fill="#FFD600"/>
+                  <path d="M13.793 12L3.609 22.186c.477.223 1.004.182 1.447-.113l12.011-7.935-3.274-2.138z" fill="#FF3D00"/>
+                  <path d="M20.354 10.871l-3.287-2.144L13.793 12l3.274 3.273 3.287-2.144a1.328 1.328 0 0 0 0-2.258z" fill="#00B0FF"/>
+                </svg>
+                <div class="store-btn-text">
+                  <span class="store-btn-subtitle" data-i18n="btnPlayStoreSub">GET IT ON</span>
+                  <span class="store-btn-title" data-i18n="btnPlayStoreTitle">Google Play</span>
+                </div>
+              </a>
+
+              <!-- App Store -->
+              <a href="https://apps.apple.com/app/id6740000000" target="_blank" rel="noopener noreferrer" class="store-btn">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.84c.67-.82 1.13-1.96.99-3.1-.98.04-2.15.65-2.84 1.46-.61.7-.1.14 1.86.99 3.03 1.08.08 2.18-.57 2.84-1.39z"/>
+                </svg>
+                <div class="store-btn-text">
+                  <span class="store-btn-subtitle" data-i18n="btnAppStoreSub">DOWNLOAD ON</span>
+                  <span class="store-btn-title" data-i18n="btnAppStoreTitle">App Store</span>
+                </div>
+              </a>
+
+              <!-- QR Code Trigger -->
+              <button class="qr-btn-trigger" onclick="openQrModal()" aria-label="Open QR Code Modal">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="3" y="3" width="7" height="7"></rect>
+                  <rect x="14" y="3" width="7" height="7"></rect>
+                  <rect x="14" y="14" width="7" height="7"></rect>
+                  <rect x="3" y="14" width="7" height="7"></rect>
+                </svg>
+                <span data-i18n="btnQrCode">Scan QR</span>
+              </button>
+            </div>
+
+            <!-- Trust proof / Highlights -->
+            <div class="hero-trust-row">
+              <div class="trust-item">
+                <span class="trust-stars">★★★★★</span>
+                <strong data-i18n="trustPlayers">50,000+ Matches Played</strong>
+              </div>
+              <div class="trust-item">
+                <span style="color:var(--emerald-accent);">🛡️</span>
+                <strong data-i18n="trustFairPlay">100% Fair Play ELO</strong>
+              </div>
+            </div>
+          </div>
+
+          <!-- Hero Right Column: 3D Visual & Floating Badges -->
+          <div class="hero-visual-wrapper">
+            
+            <!-- Floating Trophy Badge -->
+            <div class="floating-card floating-card-left">
+              <div class="float-icon">🏆</div>
+              <div class="float-info">
+                <div class="float-title" data-i18n="floatTourneyTitle">Knockout Cup Final</div>
+                <div class="float-sub" data-i18n="floatTourneySub">Championship Gold Tier</div>
+              </div>
+            </div>
+
+            <!-- Floating Rating Badge -->
+            <div class="floating-card floating-card-right">
+              <div class="float-icon">⭐</div>
+              <div class="float-info">
+                <div class="float-title" data-i18n="floatRatingTitle">4.9 ★ Player Rating</div>
+                <div class="float-sub" data-i18n="floatRatingSub">Smooth 60 FPS Table</div>
+              </div>
+            </div>
+
+            <!-- Floating Luxury Ace Card -->
+            <div class="floating-playing-card" title="Gold Kingdom Ace of Spades">
+              <img src="images/card_gold_ace.webp" alt="Ace of Spades Gold Kingdom">
+            </div>
+
+            <!-- Device Frame with Real Gameplay Screenshot -->
+            <div class="device-frame">
+              <div class="device-screen">
+                <img src="images/gameplay.png" alt="Spades Online Table Gameplay" loading="eager">
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         Stats Bar Section
+         ========================================== -->
+    <section class="stats-section">
+      <div class="container">
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-value" data-i18n="stat1Val">4-Player</div>
+            <div class="stat-label" data-i18n="stat1Label">Real-Time Multiplayer</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" data-i18n="stat2Val">3-Round</div>
+            <div class="stat-label" data-i18n="stat2Label">Knockout Tournaments</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" data-i18n="stat3Val">15+</div>
+            <div class="stat-label" data-i18n="stat3Label">Custom Decks & Felt Themes</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" data-i18n="stat4Val">100%</div>
+            <div class="stat-label" data-i18n="stat4Label">Skill-Based ELO Matchmaking</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         Key Features Grid
+         ========================================== -->
+    <section class="features-section" id="features">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-tag"><span class="suit-icon">♠</span> <span data-i18n="featTag">GAME HIGHLIGHTS</span></div>
+          <h2 class="section-title" data-i18n="featTitle">Designed for Card Masters & Casuals Alike</h2>
+          <p class="section-desc" data-i18n="featDesc">From lightning-fast casual tricks to high-stakes knockout championships, every round is built with competitive balance and polished aesthetics.</p>
+        </div>
+
+        <div class="features-grid">
+          
+          <div class="feature-card">
+            <div class="feature-icon-wrapper">🌐</div>
+            <h3 class="feature-title" data-i18n="f1Title">Real-Time 4-Player</h3>
+            <p class="feature-desc" data-i18n="f1Desc">Play 2v2 Partnership or Cutthroat Solo with players worldwide over sub-millisecond SignalR WebSocket connections.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon-wrapper">🏆</div>
+            <h3 class="feature-title" data-i18n="f2Title">Knockout Tournaments</h3>
+            <p class="feature-desc" data-i18n="f2Desc">Advance through Quarter-Finals, Semi-Finals, and Championship Finals to hoist Bronze, Silver, and Gold cups.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon-wrapper">🤖</div>
+            <h3 class="feature-title" data-i18n="f3Title">Zero Wait-Time AI</h3>
+            <p class="feature-desc" data-i18n="f3Desc">Trained with Residual Neural Network bidding and Double Dummy Solver algorithms for human-like tactical play.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon-wrapper">🔒</div>
+            <h3 class="feature-title" data-i18n="f4Title">Private Custom Tables</h3>
+            <p class="feature-desc" data-i18n="f4Desc">Create password-protected custom tables, set custom entry stakes, and invite friends directly from your contacts.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon-wrapper">📈</div>
+            <h3 class="feature-title" data-i18n="f5Title">City & Global Leaderboards</h3>
+            <p class="feature-desc" data-i18n="f5Desc">Climb weekly and monthly leaderboards representing your country, state, and hometown with verified ELO rating.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon-wrapper">🎁</div>
+            <h3 class="feature-title" data-i18n="f6Title">Animated Gifts & Emotes</h3>
+            <p class="feature-desc" data-i18n="f6Desc">Send interactive tomatoes, celebratory drinks, roses, and animated emoji reactions to teammates and rivals.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         Interactive Showcase Gallery (Tabs)
+         ========================================== -->
+    <section class="gallery-section" id="showcase">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-tag"><span class="suit-icon">♠</span> <span data-i18n="galTag">GAMEPLAY SHOWCASE</span></div>
+          <h2 class="section-title" data-i18n="galTitle">Take a Seat at the Table</h2>
+          <p class="section-desc" data-i18n="galDesc">Explore authentic screenshots taken directly from live game sessions across mobile platforms.</p>
+        </div>
+
+        <!-- Navigation Tabs -->
+        <div class="gallery-tabs-nav">
+          <button class="gallery-tab-btn active" data-tab="gameplay" data-i18n="tabGameplay">Table Gameplay</button>
+          <button class="gallery-tab-btn" data-tab="bidding" data-i18n="tabBidding">Bidding & Strategy</button>
+          <button class="gallery-tab-btn" data-tab="tourney" data-i18n="tabTourney">Tournaments</button>
+          <button class="gallery-tab-btn" data-tab="leaderboard" data-i18n="tabLeaderboard">Leaderboards</button>
+          <button class="gallery-tab-btn" data-tab="friends" data-i18n="tabFriends">Private Rooms</button>
+          <button class="gallery-tab-btn" data-tab="lobby" data-i18n="tabLobby">Lobby & Profile</button>
+        </div>
+
+        <!-- Tab Stages -->
+        <div class="gallery-stage">
+          
+          <!-- Tab 1: Gameplay -->
+          <div class="gallery-content-pane active" id="pane-gameplay">
+            <div class="gallery-image-box">
+              <img src="images/gameplay.png" alt="Spades Online Table Gameplay Screen">
+            </div>
+            <div class="gallery-info-box">
+              <span class="gallery-tag" data-i18n="p1Tag">CLASSIC & PARTNERSHIP</span>
+              <h3 class="gallery-title" data-i18n="p1Title">Authentic 4-Player Table Action</h3>
+              <p class="gallery-text" data-i18n="p1Desc">Experience fluid 60 FPS card animations, crisp audio soundscapes, and intuitive touch controls optimized for one-handed portrait gameplay.</p>
+              <ul class="gallery-feature-list">
+                <li><span class="check-icon">✓</span> <span data-i18n="p1c1">High-contrast card readability designed for competitive play</span></li>
+                <li><span class="check-icon">✓</span> <span data-i18n="p1c2">Dynamic trump break animations and trick collection counters</span></li>
+                <li><span class="check-icon">✓</span> <span data-i18n="p1c3">Interactive player seats with animated avatar frames and level badges</span></li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Tab 2: Bidding -->
+          <div class="gallery-content-pane" id="pane-bidding">
+            <div class="gallery-image-box">
+              <img src="images/bid.png" alt="Spades Online Bidding System Screen">
+            </div>
+            <div class="gallery-info-box">
+              <span class="gallery-tag" data-i18n="p2Tag">PREDICTION & STRATEGY</span>
+              <h3 class="gallery-title" data-i18n="p2Title">Precision Bidding System</h3>
+              <p class="gallery-text" data-i18n="p2Desc">Make your bid accurately to fulfill your team contract. Dare to declare Nil or Blind Nil for massive bonus points, but stay vigilant against sandbags.</p>
+              <ul class="gallery-feature-list">
+                <li><span class="check-icon">✓</span> <span data-i18n="p2c1">Calculated partner and opponent bid tracking in real-time</span></li>
+                <li><span class="check-icon">✓</span> <span data-i18n="p2c2">Nil (+100) and Blind Nil (+200) high-stakes tactical options</span></li>
+                <li><span class="check-icon">✓</span> <span data-i18n="p2c3">Accurate sandbag accumulation warnings before penalties hit</span></li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Tab 3: Tournaments -->
+          <div class="gallery-content-pane" id="pane-tourney">
+            <div class="gallery-image-box">
+              <img src="images/tournament.png" alt="Spades Online Knockout Tournament Bracket">
+            </div>
+            <div class="gallery-info-box">
+              <span class="gallery-tag" data-i18n="p3Tag">CHAMPIONSHIP CUPS</span>
+              <h3 class="gallery-title" data-i18n="p3Title">3-Round Knockout Brackets</h3>
+              <p class="gallery-text" data-i18n="p3Desc">Compete in fast-paced tournaments against 8 teams. Win 3 consecutive elimination rounds to lift the Gold Trophy and claim jackpot coin rewards.</p>
+              <ul class="gallery-feature-list">
+                <li><span class="check-icon">✓</span> <span data-i18n="p3c1">Bronze, Silver, and Gold tier cups with escalating prize pools</span></li>
+                <li><span class="check-icon">✓</span> <span data-i18n="p3c2">Instant bracket updates and automated round progression</span></li>
+                <li><span class="check-icon">✓</span> <span data-i18n="p3c3">Exclusive championship card backs unlocked by trophy count</span></li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Tab 4: Leaderboard -->
+          <div class="gallery-content-pane" id="pane-leaderboard">
+            <div class="gallery-image-box">
+              <img src="images/leaderboard.png" alt="Spades Online Global and City Leaderboards">
+            </div>
+            <div class="gallery-info-box">
+              <span class="gallery-tag" data-i18n="p4Tag">GLOBAL COMPETITION</span>
+              <h3 class="gallery-title" data-i18n="p4Title">Represent Your City & Country</h3>
+              <p class="gallery-text" data-i18n="p4Desc">Every trick and victory boosts your ELO rating on weekly, monthly, and all-time leaderboards. Become the #1 Spades player in your hometown.</p>
+              <ul class="gallery-feature-list">
+                <li><span class="check-icon">✓</span> <span data-i18n="p4c1">Dedicated city, national, and global leaderboard views</span></li>
+                <li><span class="check-icon">✓</span> <span data-i18n="p4c2">Weekly prize distributions for top 100 ranking players</span></li>
+                <li><span class="check-icon">✓</span> <span data-i18n="p4c3">Transparent win rate and match history inspection</span></li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Tab 5: Friends / Private Rooms -->
+          <div class="gallery-content-pane" id="pane-friends">
+            <div class="gallery-image-box">
+              <img src="images/friends.png" alt="Spades Online Custom Private Tables">
+            </div>
+            <div class="gallery-info-box">
+              <span class="gallery-tag" data-i18n="p5Tag">PLAY WITH BUDDIES</span>
+              <h3 class="gallery-title" data-i18n="p5Title">Custom Password-Protected Tables</h3>
+              <p class="gallery-text" data-i18n="p5Desc">Host your own table for family and friends. Share 6-character room codes or send direct one-tap invites to anyone on your friends list.</p>
+              <ul class="gallery-feature-list">
+                <li><span class="check-icon">✓</span> <span data-i18n="p5c1">Configurable target score (250, 300, or 500 points)</span></li>
+                <li><span class="check-icon">✓</span> <span data-i18n="p5c2">Custom turn timer options (10s blitz or 20s relaxed)</span></li>
+                <li><span class="check-icon">✓</span> <span data-i18n="p5c3">Friend presence notifications and private chat messaging</span></li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Tab 6: Lobby -->
+          <div class="gallery-content-pane" id="pane-lobby">
+            <div class="gallery-image-box">
+              <img src="images/lobby.png" alt="Spades Online Main Lobby Screen">
+            </div>
+            <div class="gallery-info-box">
+              <span class="gallery-tag" data-i18n="p6Tag">PERSONALIZE YOUR EXPERIENCE</span>
+              <h3 class="gallery-title" data-i18n="p6Title">Lobby, Avatars & Daily Quests</h3>
+              <p class="gallery-text" data-i18n="p6Desc">Personalize your identity with rare avatar frames, unlock daily login rewards, and track your card mastery progression over time.</p>
+              <ul class="gallery-feature-list">
+                <li><span class="check-icon">✓</span> <span data-i18n="p6c1">Legendary animated frames (Dragon Flame, Americana Eagle, Royal Gold)</span></li>
+                <li><span class="check-icon">✓</span> <span data-i18n="p6c2">Daily quests providing coins and diamond progression rewards</span></li>
+                <li><span class="check-icon">✓</span> <span data-i18n="p6c3">Comprehensive lifetime player statistics and achievement badges</span></li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         Game Modes Section
+         ========================================== -->
+    <section class="modes-section" id="modes">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-tag"><span class="suit-icon">♠</span> <span data-i18n="modesTag">HOW DO YOU PLAY?</span></div>
+          <h2 class="section-title" data-i18n="modesTitle">Diverse Game Modes for Every Playstyle</h2>
+          <p class="section-desc" data-i18n="modesDesc">Choose your preferred speed and competitive intensity.</p>
+        </div>
+
+        <div class="modes-grid">
+          
+          <div class="mode-card">
+            <span class="mode-badge" data-i18n="m1Badge">MOST POPULAR</span>
+            <h3 class="mode-title" data-i18n="m1Title">Partnership 2v2</h3>
+            <p class="mode-desc" data-i18n="m1Desc">Team up with a partner sitting across the table. Combine your bids, cover each other's weaknesses, and outsmart the opposing duo.</p>
+          </div>
+
+          <div class="mode-card">
+            <span class="mode-badge" data-i18n="m2Badge">INDIVIDUAL SKILL</span>
+            <h3 class="mode-title" data-i18n="m2Title">Cutthroat Solo</h3>
+            <p class="mode-desc" data-i18n="m2Desc">Every player for themselves. No partners, no mercy. Calculate your own tricks and avoid taking sandbag penalties from rivals.</p>
+          </div>
+
+          <div class="mode-card">
+            <span class="mode-badge" data-i18n="m3Badge">HIGH STAKES</span>
+            <h3 class="mode-title" data-i18n="m3Title">Knockout Cup</h3>
+            <p class="mode-desc" data-i18n="m3Desc">Quarter-Finals, Semi-Finals, and Championship Final. 8 teams enter, only 1 champion walks away with the grand trophy.</p>
+          </div>
+
+          <div class="mode-card">
+            <span class="mode-badge" data-i18n="m4Badge">SOCIAL & CASUAL</span>
+            <h3 class="mode-title" data-i18n="m4Title">Private Lounge</h3>
+            <p class="mode-desc" data-i18n="m4Desc">Gather friends or family in a password-protected room. Play under custom rules with no strangers joining your game.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         Decks & Table Customization Showcase
+         ========================================== -->
+    <section class="customization-section" id="customization">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-tag"><span class="suit-icon">♠</span> <span data-i18n="customTag">TABLE CUSTOMIZATION</span></div>
+          <h2 class="section-title" data-i18n="customTitle">Legendary Decks & Atmospheric Felts</h2>
+          <p class="section-desc" data-i18n="customDesc">Express your prestige at the table with handcrafted holographic card decks and distinct table themes.</p>
+        </div>
+
+        <div class="custom-grid">
+          
+          <!-- Card Decks Box -->
+          <div class="custom-box">
+            <h3 class="custom-box-title" data-i18n="decksTitle">🃏 Legendary Card Decks</h3>
+            <p class="custom-box-desc" data-i18n="decksDesc">Click any deck to preview cards and holographic backs:</p>
+
+            <div class="cards-showcase-row">
+              <div class="flip-card-item" data-front="images/card_dragon_ace.webp" data-back="images/card_dragon_back.webp" title="Click to flip Dragon Card">
+                <img src="images/card_dragon_back.webp" alt="Dragon Deck Back">
+                <div class="card-caption" data-i18n="dDragon">Dragon Flame</div>
+              </div>
+              <div class="flip-card-item" data-front="images/card_gold_ace.webp" data-back="images/card_gold_back.webp" title="Click to flip Gold Kingdom Card">
+                <img src="images/card_gold_back.webp" alt="Gold Kingdom Deck Back">
+                <div class="card-caption" data-i18n="dGold">Gold Kingdom</div>
+              </div>
+              <div class="flip-card-item" data-front="images/card_dragon_ace.webp" data-back="images/card_dragon_ace.webp">
+                <img src="images/card_dragon_ace.webp" alt="Dragon Ace of Spades">
+                <div class="card-caption" data-i18n="dAmericana">Americana</div>
+              </div>
+              <div class="flip-card-item" data-front="images/card_gold_ace.webp" data-back="images/card_gold_ace.webp">
+                <img src="images/card_gold_ace.webp" alt="Gold Ace of Spades">
+                <div class="card-caption" data-i18n="dCyber">Cyber Neon</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Table Themes Box -->
+          <div class="custom-box">
+            <h3 class="custom-box-title" data-i18n="feltsTitle">🎨 Atmospheric Table Felts</h3>
+            <p class="custom-box-desc" data-i18n="feltsDesc">Switch your table atmosphere to match your mood:</p>
+
+            <div class="themes-showcase-row">
+              <div class="theme-card-item">
+                <img src="images/theme_royal.jpg" alt="Royal Court Velvet Table Theme">
+                <div class="theme-caption" data-i18n="tRoyal">Royal Court</div>
+              </div>
+              <div class="theme-card-item">
+                <img src="images/theme_medieval.jpg" alt="Medieval Stone Table Theme">
+                <div class="theme-caption" data-i18n="tMedieval">Medieval Stone</div>
+              </div>
+              <div class="theme-card-item">
+                <img src="images/theme_street.jpg" alt="Street Park Table Theme">
+                <div class="theme-caption" data-i18n="tStreet">Street Park</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         Rules & Strategy Masterclass
+         ========================================== -->
+    <section class="rules-section" id="rules">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-tag"><span class="suit-icon">♠</span> <span data-i18n="rulesTag">MASTER THE BASICS</span></div>
+          <h2 class="section-title" data-i18n="rulesTitle">Spades Rules & Strategy Guide</h2>
+          <p class="section-desc" data-i18n="rulesDesc">Everything you need to know to outplay opponents and become a grandmaster.</p>
+        </div>
+
+        <div class="rules-grid">
+          
+          <div class="rule-box">
+            <div class="rule-number">01</div>
+            <h3 class="rule-title" data-i18n="r1Title">1. The Bidding Contract</h3>
+            <p class="rule-text" data-i18n="r1Desc">At the start of each hand, players assess their cards and bid the exact number of tricks (books) they expect to win. In 2v2, partner bids are combined.</p>
+          </div>
+
+          <div class="rule-box">
+            <div class="rule-number">02</div>
+            <h3 class="rule-title" data-i18n="r2Title">2. Nil & Blind Nil Strategy</h3>
+            <p class="rule-text" data-i18n="r2Desc">Bid Nil to predict taking zero tricks for a 100-point reward. Trailing behind? Bid Blind Nil before looking at your hand for a massive 200-point comeback!</p>
+          </div>
+
+          <div class="rule-box">
+            <div class="rule-number">03</div>
+            <h3 class="rule-title" data-i18n="r3Title">3. Beware the Sandbags</h3>
+            <p class="rule-text" data-i18n="r3Desc">Taking more tricks than your bid awards 1 extra point per bag. However, accumulate 10 penalty bags and your team is slapped with a 100-point penalty!</p>
+          </div>
+
+          <div class="rule-box">
+            <div class="rule-number">04</div>
+            <h3 class="rule-title" data-i18n="r4Title">4. Spades are Always Trumps</h3>
+            <p class="rule-text" data-i18n="r4Desc">Spades outrank all other suits. You must follow the led suit if possible. You cannot lead with Spades until a player has 'broken' Spades by trumping a lead.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         Under The Hood: Technology & Fair Play
+         ========================================== -->
+    <section class="tech-section">
+      <div class="container">
+        <div class="tech-banner">
+          
+          <div class="tech-info">
+            <div class="section-tag"><span class="suit-icon">♠</span> <span data-i18n="techTag">UNDER THE HOOD</span></div>
+            <h2 class="tech-title" data-i18n="techTitle">Zero Latency & 100% Fair Play Architecture</h2>
+            <p class="tech-desc" data-i18n="techDesc">Spades Online is engineered with enterprise-grade cloud infrastructure to ensure instant matchmaking, reliable WebSocket connections, and cryptographically verified shuffles.</p>
+            <div class="tech-pills">
+              <span class="tech-pill" data-i18n="tp1">⚡ SignalR WebSocket Sub-50ms Latency</span>
+              <span class="tech-pill" data-i18n="tp2">🤖 Residual NN + Double Dummy Solver AI</span>
+              <span class="tech-pill" data-i18n="tp3">🛡️ CSPRNG Cryptographic Card Shuffle</span>
+              <span class="tech-pill" data-i18n="tp4">🔄 Instant Bot Takeover on Disconnect</span>
+            </div>
+          </div>
+
+          <div class="tech-metrics">
+            <div class="tech-metric-item">
+              <span class="tech-metric-label" data-i18n="tm1Label">Server Response Latency</span>
+              <span class="tech-metric-val" data-i18n="tm1Val">&lt; 45 ms</span>
+            </div>
+            <div class="tech-metric-item">
+              <span class="tech-metric-label" data-i18n="tm2Label">AI Decision Time</span>
+              <span class="tech-metric-val" data-i18n="tm2Val">&lt; 120 ms</span>
+            </div>
+            <div class="tech-metric-item">
+              <span class="tech-metric-label" data-i18n="tm3Label">Network Reconnect Tolerance</span>
+              <span class="tech-metric-val" data-i18n="tm3Val">Seamless (30s)</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         FAQ Accordion
+         ========================================== -->
+    <section class="faq-section" id="faq">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-tag"><span class="suit-icon">♠</span> <span data-i18n="faqTag">COMMON QUESTIONS</span></div>
+          <h2 class="section-title" data-i18n="faqTitle">Frequently Asked Questions</h2>
+          <p class="section-desc" data-i18n="faqDesc">Find quick answers regarding gameplay, accounts, and cross-platform access.</p>
+        </div>
+
+        <div class="faq-container">
+          
+          <div class="faq-item active">
+            <button class="faq-question">
+              <span data-i18n="q1">Is Spades Online free to play?</span>
+              <span class="faq-icon">▼</span>
+            </button>
+            <div class="faq-answer">
+              <p data-i18n="a1">Yes! Spades Online is free to download and play. Every player receives daily login bonuses, quest rewards, and free chip refills so you can always stay at the table.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              <span data-i18n="q2">How does the ELO rating system work?</span>
+              <span class="faq-icon">▼</span>
+            </button>
+            <div class="faq-answer">
+              <p data-i18n="a2">Our ELO algorithm calculates rating adjustments based on the strength of both your team and your opponents. Beating higher-ranked players yields greater gains, ensuring competitive integrity.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              <span data-i18n="q3">What happens if my internet connection drops during a match?</span>
+              <span class="faq-icon">▼</span>
+            </button>
+            <div class="faq-answer">
+              <p data-i18n="a3">Our smart AI bot immediately steps in and plays according to your hand and bidding strategy so your partner is never abandoned. If you reconnect within the timeout window, you seamlessly resume control.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              <span data-i18n="q4">Can I play privately with my friends?</span>
+              <span class="faq-icon">▼</span>
+            </button>
+            <div class="faq-answer">
+              <p data-i18n="a4">Yes! You can create a Private Table, set a custom password or share a 6-letter room code, and play exclusively with your invited friends.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              <span data-i18n="q5">How can I request account or data deletion?</span>
+              <span class="faq-icon">▼</span>
+            </button>
+            <div class="faq-answer">
+              <p data-i18n="a5">You can delete your account directly inside the app settings under 'Delete Account', or submit an instant request via our web page at <a href="delete-account.html" style="color:#fde047;">nayman.stream/delete-account.html</a>.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         Call to Action (CTA) Banner
+         ========================================== -->
+    <section class="cta-section">
+      <div class="container">
+        <div class="cta-box">
+          <h2 class="cta-title" data-i18n="ctaTitle">Ready to Master the Spades Table?</h2>
+          <p class="cta-desc" data-i18n="ctaDesc">Join thousands of active players right now. Download Spades Online on your phone or tablet and make your first bid!</p>
+
+          <div class="cta-buttons">
+            <a href="https://play.google.com/store/apps/details?id=com.sertac10.spades" target="_blank" rel="noopener noreferrer" class="store-btn">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M3.609 1.814L13.793 12 3.61 22.186a2.38 2.38 0 0 1-.61-.926V2.74c.16-.36.38-.69.609-.926z" fill="#00E676"/>
+                <path d="M17.067 8.727L5.056.792c-.443-.295-.97-.336-1.447-.113l10.184 10.184 3.274-2.136z" fill="#FFD600"/>
+                <path d="M13.793 12L3.609 22.186c.477.223 1.004.182 1.447-.113l12.011-7.935-3.274-2.138z" fill="#FF3D00"/>
+                <path d="M20.354 10.871l-3.287-2.144L13.793 12l3.274 3.273 3.287-2.144a1.328 1.328 0 0 0 0-2.258z" fill="#00B0FF"/>
+              </svg>
+              <div class="store-btn-text">
+                <span class="store-btn-subtitle" data-i18n="btnPlayStoreSub">GET IT ON</span>
+                <span class="store-btn-title" data-i18n="btnPlayStoreTitle">Google Play</span>
+              </div>
+            </a>
+
+            <a href="https://apps.apple.com/app/id6740000000" target="_blank" rel="noopener noreferrer" class="store-btn">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.84c.67-.82 1.13-1.96.99-3.1-.98.04-2.15.65-2.84 1.46-.61.7-.1.14 1.86.99 3.03 1.08.08 2.18-.57 2.84-1.39z"/>
+              </svg>
+              <div class="store-btn-text">
+                <span class="store-btn-subtitle" data-i18n="btnAppStoreSub">DOWNLOAD ON</span>
+                <span class="store-btn-title" data-i18n="btnAppStoreTitle">App Store</span>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==========================================
+       Footer
+       ========================================== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        
+        <!-- Brand & Description -->
+        <div class="footer-col">
+          <div class="brand">
+            <div class="brand-icon-wrapper" style="width:36px;height:36px;">
+              <img src="images/icon-512.png" alt="Spades Logo" class="brand-logo-img">
+            </div>
+            <div class="brand-info">
+              <div class="brand-title" style="font-size:16px;">SPADES <span>ONLINE</span></div>
+              <div class="brand-domain">nayman.stream</div>
+            </div>
+          </div>
+          <p class="footer-brand-desc" data-i18n="footerBrandDesc">The premier competitive online Spades & Koz Maça platform with real-time multiplayer, knockout tournaments, and high-performance gameplay.</p>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="footer-col">
+          <h4 class="footer-col-title" data-i18n="footerColQuick">Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="#features" data-i18n="navFeatures">Features</a></li>
+            <li><a href="#modes" data-i18n="navModes">Game Modes</a></li>
+            <li><a href="#showcase" data-i18n="navShowcase">Showcase</a></li>
+            <li><a href="#customization" data-i18n="navDecks">Decks & Felts</a></li>
+            <li><a href="#rules" data-i18n="navRules">How to Play</a></li>
+            <li><a href="#faq" data-i18n="navFaq">FAQ</a></li>
+          </ul>
+        </div>
+
+        <!-- Legal & Compliance -->
+        <div class="footer-col">
+          <h4 class="footer-col-title" data-i18n="footerColLegal">Compliance & Legal</h4>
+          <ul class="footer-links">
+            <li><a href="privacy.html" data-i18n="footerPrivacy">Privacy Policy</a></li>
+            <li><a href="delete-account.html" data-i18n="footerDelete">Account & Data Deletion</a></li>
+            <li><a href="app-ads.txt" data-i18n="footerAds">App Ads Verification</a></li>
+          </ul>
+        </div>
+
+        <!-- Developer & Contact -->
+        <div class="footer-col">
+          <h4 class="footer-col-title" data-i18n="footerColSupport">Developer & Support</h4>
+          <div class="footer-contact-info">
+            <p style="margin-bottom:8px;" data-i18n="footerDev">Developer: Sertaç Nayman</p>
+            <p style="margin-bottom:8px;" data-i18n="footerEmail">Support: <a href="mailto:snaimans@gmail.com">snaimans@gmail.com</a></p>
+            <p>Platform: Google Play & App Store</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Footer Bottom -->
+      <div class="footer-bottom">
+        <div>&copy; 2026 nayman.stream &bull; <span data-i18n="footerAllRights">All rights reserved. Designed for Google Play and App Store.</span></div>
+        <div>
+          <a href="privacy.html" data-i18n="footerPrivacy">Privacy Policy</a> &bull; 
+          <a href="delete-account.html" data-i18n="footerDelete">Delete Account</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================
+       Modals: QR Code & Lightbox
+       ========================================== -->
+  <!-- QR Code Modal -->
+  <div class="modal-overlay" id="qr-modal" onclick="closeQrModal()">
+    <div class="modal-card" onclick="event.stopPropagation()">
+      <button class="modal-close-btn" onclick="closeQrModal()" aria-label="Close Modal">&times;</button>
+      <h3 style="font-size:20px;margin-bottom:8px;" data-i18n="qrTitle">Scan to Download Spades</h3>
+      <p style="font-size:13.5px;color:var(--text-muted);" data-i18n="qrSub">Point your smartphone camera to download instantly from Google Play Store.</p>
+      
+      <div class="modal-qr-box">
+        <!-- Crisp SVG QR Code for https://play.google.com/store/apps/details?id=com.sertac10.spades -->
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dcom.sertac10.spades" alt="Spades Online Google Play QR Code" style="width:100%;height:100%;">
+      </div>
+
+      <div style="font-size:12px;color:var(--gold-accent);font-weight:600;">com.sertac10.spades</div>
+    </div>
+  </div>
+
+  <!-- Screenshot Lightbox Modal -->
+  <div class="lightbox-modal" id="lightbox-modal">
+    <img id="lightbox-img" src="" alt="Enlarged screenshot preview">
+  </div>
+
+  <!-- Main JavaScript File -->
+  <script src="js/main.js"></script>
+</body>
+</html>

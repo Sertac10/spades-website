@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy - Spades Online</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #070B14;
+      --card-bg: rgba(15, 23, 42, 0.85);
+      --card-border: rgba(212, 175, 55, 0.25);
+      --gold-primary: #FFE066;
+      --gold-accent: #D4AF37;
+      --text-main: #E2E8F0;
+      --text-muted: #94A3B8;
+      --link-color: #38BDF8;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      line-height: 1.7;
+      padding: 40px 20px;
+    }
+
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 48px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 50px rgba(212, 175, 55, 0.08);
+      backdrop-filter: blur(12px);
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 40px;
+      border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+      padding-bottom: 30px;
+    }
+
+    .logo-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #1E1B4B 0%, #0F172A 100%);
+      border: 2px solid var(--gold-accent);
+      font-size: 32px;
+      margin-bottom: 16px;
+      box-shadow: 0 0 20px rgba(255, 224, 102, 0.3);
+    }
+
+    .title {
+      font-family: 'Cinzel', serif;
+      font-size: 32px;
+      color: var(--gold-primary);
+      letter-spacing: 2px;
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      color: var(--text-muted);
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .meta-badge {
+      display: inline-block;
+      margin-top: 14px;
+      padding: 4px 14px;
+      background: rgba(212, 175, 55, 0.1);
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      border-radius: 20px;
+      font-size: 12px;
+      color: var(--gold-primary);
+    }
+
+    .lang-switcher {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .lang-btn {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: var(--text-main);
+      padding: 6px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 600;
+      transition: all 0.2s ease;
+    }
+
+    .lang-btn.active, .lang-btn:hover {
+      background: var(--gold-accent);
+      color: #000;
+      border-color: var(--gold-accent);
+    }
+
+    h2 {
+      color: var(--gold-primary);
+      font-size: 20px;
+      font-weight: 600;
+      margin-top: 36px;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    h2::before {
+      content: '♠';
+      color: var(--gold-accent);
+      font-size: 16px;
+    }
+
+    p {
+      margin-bottom: 14px;
+      color: #CBD5E1;
+      font-size: 15px;
+    }
+
+    ul {
+      margin-left: 24px;
+      margin-bottom: 18px;
+      color: #CBD5E1;
+    }
+
+    li {
+      margin-bottom: 8px;
+      font-size: 14.5px;
+    }
+
+    strong {
+      color: #F8FAFC;
+    }
+
+    .info-box {
+      background: rgba(56, 189, 248, 0.08);
+      border-left: 4px solid #38BDF8;
+      padding: 16px;
+      border-radius: 8px;
+      margin: 20px 0;
+      font-size: 14px;
+    }
+
+    .delete-box {
+      background: rgba(239, 68, 68, 0.08);
+      border-left: 4px solid #EF4444;
+      padding: 16px;
+      border-radius: 8px;
+      margin: 20px 0;
+      font-size: 14px;
+    }
+
+    a {
+      color: var(--link-color);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 50px;
+      padding-top: 24px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .lang-section {
+      display: none;
+    }
+
+    .lang-section.active {
+      display: block;
+    }
+
+    @media (max-width: 640px) {
+      body {
+        padding: 16px 10px;
+      }
+      .container {
+        padding: 24px 18px;
+      }
+      .title {
+        font-size: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div style="margin-bottom: 24px; display: flex; justify-content: space-between; align-items: center;">
+      <a href="/" style="color: #FFE066; text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 6px; font-size: 14px;">← Back to Home / Ana Sayfa</a>
+      <a href="delete-account.html" style="color: #94A3B8; text-decoration: none; font-size: 13px;">Delete Account</a>
+    </div>
+    
+    <div class="header">
+      <div class="logo-badge">♠</div>
+      <h1 class="title">SPADES</h1>
+      <p class="subtitle">Online Trick-Taking Card Game (Koz Maça)</p>
+      <div class="meta-badge">Package: com.sertac10.spades &bull; Effective Date: August 17, 2026</div>
+
+      <div class="lang-switcher">
+        <button class="lang-btn active" onclick="switchLang('en')">English</button>
+        <button class="lang-btn" onclick="switchLang('tr')">Türkçe</button>
+      </div>
+    </div>
+
+    <!-- ENGLISH VERSION -->
+    <div id="lang-en" class="lang-section active">
+      
+      <h2>1. Introduction</h2>
+      <p>
+        Welcome to <strong>Spades</strong> ("we", "our", or "the Game"), published and operated by Sertac. We respect your privacy and are committed to protecting the personal data of our players.
+      </p>
+      <p>
+        This Privacy Policy explains what information we collect, how we use it, how we protect it, and your rights regarding your data when using our mobile application on Android and iOS devices.
+      </p>
+
+      <h2>2. Information We Collect</h2>
+      <p>We only collect information necessary to provide real-time multiplayer gaming, matchmaking, and player progression:</p>
+      <ul>
+        <li><strong>Account Information:</strong> When you sign in with Google Sign-In or Apple Sign-In, we receive your basic public profile (display name, email address, profile avatar) to authenticate your account. If you choose to play as a Guest, a random pseudonym and device identifier are used.</li>
+        <li><strong>Gameplay & Statistics:</strong> Match scores, ELO ratings, leaderboard standings, unlocked cosmetics (decks, themes, avatars), tournament victories, and daily streak progress.</li>
+        <li><strong>Device Identifiers & Push Tokens:</strong> Firebase Cloud Messaging (FCM) device tokens are collected solely to deliver push notifications (such as friend match invites or tournament alerts) when you opt-in.</li>
+        <li><strong>Camera Permission:</strong> The app may request camera access <em>solely</em> for scanning physical friend QR codes to add friends locally. No camera images, video feeds, or biometric data are stored, processed on servers, or shared with third parties.</li>
+      </ul>
+
+      <h2>3. Third-Party Services & Analytics</h2>
+      <p>Our application integrates trusted third-party SDKs to ensure stable real-time gameplay and security:</p>
+      <ul>
+        <li><strong>Google Play Services & Firebase Authentication:</strong> For secure user login and token validation.</li>
+        <li><strong>Firebase Cloud Messaging (FCM):</strong> For delivering in-game notification alerts.</li>
+        <li><strong>Firebase Analytics:</strong> For aggregate, anonymous crash diagnostics, technical stability metrics, and game screen navigation statistics to improve game performance.</li>
+      </ul>
+      <p>These third-party providers handle data in accordance with their respective privacy policies:</p>
+      <div class="info-box">
+        &bull; <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google & Firebase Privacy Policy</a><br>
+        &bull; <a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener noreferrer">Apple Privacy Policy</a>
+      </div>
+
+      <h2>4. How We Use Your Information</h2>
+      <p>We use the collected information for the following purposes:</p>
+      <ul>
+        <li>To provide real-time 4-player Spades multiplayer matchmaking and gameplay.</li>
+        <li>To calculate leaderboard rankings, tournament brackets, and level progression.</li>
+        <li>To maintain game integrity, fair play, and prevent cheating.</li>
+        <li>To deliver relevant in-game notifications and rewards.</li>
+      </ul>
+
+      <h2>5. Data Retention & Account Deletion Policy</h2>
+      <p>
+        We retain your account data for as long as your account remains active. You have the right to delete your account and all associated data at any time:
+      </p>
+      <div class="delete-box">
+        <strong>How to delete your account:</strong><br>
+        1. Open the Spades app and navigate to <strong>Profile &gt; Settings &gt; Delete Account</strong>.<br>
+        2. Confirm your request. Your account, match history, unlocked items, and personal data will be permanently removed from our active database.<br>
+        3. Alternatively, you may contact our support team at <a href="mailto:snaimans@gmail.com">snaimans@gmail.com</a> to request manual data erasure.
+      </div>
+
+      <h2>6. Children's Privacy (COPPA Compliance)</h2>
+      <p>
+        Our Game is intended for general audiences and is not directed to children under the age of 13. We do not knowingly collect personal identifiable information from children under 13. If you believe a child has provided us with personal information without parental consent, please contact us and we will promptly remove such information.
+      </p>
+
+      <h2>7. Security</h2>
+      <p>
+        We employ industry-standard encryption protocols (HTTPS, WSS/TLS for SignalR websockets, and encrypted token storage) to protect your information against unauthorized access, alteration, or destruction.
+      </p>
+
+      <h2>8. Contact Us</h2>
+      <p>
+        If you have any questions, concerns, or requests regarding this Privacy Policy, please feel free to reach out to us:
+      </p>
+      <p>
+        <strong>Email:</strong> <a href="mailto:snaimans@gmail.com">snaimans@gmail.com</a><br>
+        <strong>Developer:</strong> Sertac &bull; Spades Game Team
+      </p>
+
+    </div>
+
+    <!-- TURKISH VERSION -->
+    <div id="lang-tr" class="lang-section">
+      
+      <h2>1. Giriş</h2>
+      <p>
+        Sertac tarafından geliştirilen ve yayınlanan <strong>Spades (Koz Maça)</strong> oyununa hoş geldiniz. Gizliliğinize büyük önem veriyor ve oyuncularımızın kişisel verilerini korumayı taahhüt ediyoruz.
+      </p>
+      <p>
+        Bu Gizlilik Politikası, Android ve iOS cihazlarınızda uygulamamızı kullanırken hangi bilgilerin toplandığını, nasıl kullanıldığını ve verileriniz üzerindeki haklarınızı açıklar.
+      </p>
+
+      <h2>2. Toplanan Bilgiler</h2>
+      <p>Yalnızca gerçek zamanlı çok oyunculu oyun deneyimi, eşleştirme ve ilerleme takibi için gerekli olan bilgileri topluyoruz:</p>
+      <ul>
+        <li><strong>Hesap Bilgileri:</strong> Google Sign-In veya Apple Sign-In ile giriş yaptığınızda, hesabınızı doğrulamak için temel profil bilgileriniz (görünen isim, e-posta adresi, avatar) alınır. Misafir olarak oynarsanız rastgele bir kullanıcı adı ve cihaz kimliği kullanılır.</li>
+        <li><strong>Oyun İçi İstatistikler:</strong> Maç skorları, ELO puanları, liderlik tablosu dereceleri, kilit açılan kozmetikler (desteler, temalar), turnuva kupaları ve günlük giriş serileri.</li>
+        <li><strong>Cihaz Kimlikleri ve Bildirim Jetonları:</strong> Firebase Cloud Messaging (FCM) cihaz belirteçleri, yalnızca arkadaş daveti veya turnuva uyarıları gibi anlık bildirimleri iletmek için kullanılır.</li>
+        <li><strong>Kamera İzni:</strong> Uygulama, <em>yalnızca</em> fiziksel arkadaş QR kodlarını taramak amacıyla kamera erişimi talep eder. Kamera görüntüleri, videolar veya biyometrik veriler sunucularda saklanmaz ve üçüncü taraflarla paylaşılmaz.</li>
+      </ul>
+
+      <h2>3. Üçüncü Taraf Hizmetleri ve Analitik</h2>
+      <p>Oyunumuz, güvenli ve kesintisiz bir deneyim sunmak amacıyla aşağıdaki güvenilir SDK'ları kullanır:</p>
+      <ul>
+        <li><strong>Google Play Hizmetleri & Firebase Authentication:</strong> Güvenli kullanıcı kimlik doğrulaması için.</li>
+        <li><strong>Firebase Cloud Messaging (FCM):</strong> Oyun içi bildirim gönderimleri için.</li>
+        <li><strong>Firebase Analytics:</strong> Oyun performansını iyileştirmek, kilitlenmeleri önlemek ve anonim ekran gezinti istatistiklerini izlemek için.</li>
+      </ul>
+
+      <h2>4. Bilgilerin Kullanım Amaçları</h2>
+      <p>Toplanan veriler aşağıdaki amaçlar doğrultusunda işlenir:</p>
+      <ul>
+        <li>Gerçek zamanlı 4 kişilik Koz Maça eşleştirmesi ve oyun oynanışı sağlamak.</li>
+        <li>Liderlik tablosu sıralamalarını ve turnuva eşleşmelerini yönetmek.</li>
+        <li>Oyun güvenliğini ve adil oyun (fair play) ortamını korumak.</li>
+        <li>Ödülleri ve bildirimleri eksiksiz teslim etmek.</li>
+      </ul>
+
+      <h2>5. Veri Saklama ve Hesap Silme Politikası</h2>
+      <p>
+        Verileriniz hesabınız aktif olduğu sürece saklanır. Dilediğiniz zaman hesabınızı ve tüm verilerinizi tamamen silme hakkına sahipsiniz:
+      </p>
+      <div class="delete-box">
+        <strong>Hesabınızı nasıl silebilirsiniz:</strong><br>
+        1. Spades uygulamasını açın ve <strong>Profil &gt; Ayarlar &gt; Hesabımı Sil</strong> seçeneğine tıklayın.<br>
+        2. Onay verdiğinizde hesabınız, maç geçmişiniz ve tüm kişisel verileriniz veri tabanımızdan kalıcı olarak silinir.<br>
+        3. Dilerseniz <a href="mailto:snaimans@gmail.com">snaimans@gmail.com</a> adresine e-posta göndererek de verilerinizin silinmesini talep edebilirsiniz.
+      </div>
+
+      <h2>6. Çocukların Gizliliği (COPPA)</h2>
+      <p>
+        Oyunumuz 13 yaşın altındaki çocuklara yönelik olarak tasarlanmamıştır. 13 yaş altındaki bireylerden bilerek kişisel bilgi toplamıyoruz. Bir çocuğun ebeveyn izni olmadan bilgi sağladığını fark ederseniz lütfen bizimle iletişime geçin.
+      </p>
+
+      <h2>7. Güvenlik</h2>
+      <p>
+        Verilerinizin güvenliğini sağlamak için endüstri standardı şifreleme protokolleri (HTTPS, SignalR WSS/TLS ve güvenli depolama) kullanılmaktadır.
+      </p>
+
+      <h2>8. İletişim</h2>
+      <p>
+        Gizlilik politikamızla ilgili tüm soru ve talepleriniz için bize ulaşabilirsiniz:
+      </p>
+      <p>
+        <strong>E-posta:</strong> <a href="mailto:snaimans@gmail.com">snaimans@gmail.com</a><br>
+        <strong>Geliştirici:</strong> Sertac &bull; Spades Ekibi
+      </p>
+
+    </div>
+
+    <div class="footer">
+      &copy; 2026 Spades. All rights reserved. &bull; <a href="https://github.com/Sertac10/spades-game" target="_blank" rel="noopener noreferrer">GitHub Repository</a>
+    </div>
+
+  </div>
+
+  <script>
+    function switchLang(lang) {
+      document.querySelectorAll('.lang-section').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll('.lang-btn').forEach(el => el.classList.remove('active'));
+      
+      const targetSection = document.getElementById('lang-' + lang);
+      if (targetSection) targetSection.classList.add('active');
+      
+      event.target.classList.add('active');
+    }
+  </script>
+</body>
+</html>
