@@ -393,14 +393,7 @@
   };
 
   // Current language state
-  let currentLang = 'tr'; // Varsayilan Turkce
-
-  const savedLang = localStorage.getItem('spades_lang');
-  if (savedLang && (savedLang === 'tr' || savedLang === 'en')) {
-    currentLang = savedLang;
-  } else if (navigator.language && !navigator.language.toLowerCase().startsWith('tr') && !navigator.language.toLowerCase().startsWith('az')) {
-    currentLang = 'en'; // Yabanci diller icin EN
-  }
+  let currentLang = 'en'; // Enforced English default
 
   // ==========================================
   // 2. Language Switcher Function
