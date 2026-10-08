@@ -27,12 +27,12 @@
       btnAppStoreSub: "DOWNLOAD ON",
       btnAppStoreTitle: "App Store",
       btnQrCode: "Scan QR",
-      trustPlayers: "50,000+ Matches Played",
+      trustSpeed: "Instant Matchmaking & Zero Wait",
       trustFairPlay: "100% Fair Play ELO",
       floatTourneyTitle: "Knockout Cup Final",
       floatTourneySub: "Championship Gold Tier",
-      floatRatingTitle: "4.9 ★ Player Rating",
-      floatRatingSub: "Smooth 60 FPS Table",
+      floatRatingTitle: "60 FPS Fluid Animation",
+      floatRatingSub: "Zero Latency Table",
 
       stat1Val: "4-Player",
       stat1Label: "Real-Time Multiplayer",
@@ -217,12 +217,12 @@
       btnAppStoreSub: "ÇOK YAKINDA",
       btnAppStoreTitle: "App Store",
       btnQrCode: "QR Kod",
-      trustPlayers: "50.000+ Tamamlanan Maç",
+      trustSpeed: "Anında Eşleşme & Sıfır Bekleme",
       trustFairPlay: "%100 Adil ELO Eşleşmesi",
       floatTourneyTitle: "Turnuva Finali 🏆",
       floatTourneySub: "Altın Kupa Şampiyonluğu",
-      floatRatingTitle: "4.9 ★ Oyuncu Puanı",
-      floatRatingSub: "Akıcı 60 FPS Oyun Masası",
+      floatRatingTitle: "60 FPS Akıcı Animasyon",
+      floatRatingSub: "Sıfır Gecikmeli Masa",
 
       stat1Val: "4 Kişilik",
       stat1Label: "Canlı Çok Oyunculu",
@@ -393,14 +393,13 @@
   };
 
   // Current language state
-  let currentLang = 'en';
+  let currentLang = 'tr'; // Varsayilan Turkce
 
-  // Detect initial language
   const savedLang = localStorage.getItem('spades_lang');
   if (savedLang && (savedLang === 'tr' || savedLang === 'en')) {
     currentLang = savedLang;
-  } else if (navigator.language && navigator.language.toLowerCase().startsWith('tr')) {
-    currentLang = 'tr';
+  } else if (navigator.language && !navigator.language.toLowerCase().startsWith('tr') && !navigator.language.toLowerCase().startsWith('az')) {
+    currentLang = 'en'; // Yabanci diller icin EN
   }
 
   // ==========================================
